@@ -70,7 +70,17 @@ zine-page-content.spread {
     size: landscape;
     margin: 0;
     bleed: 0;
-    
+  }
+
+  zine-wrapper {
+  	overflow: scroll;
+
+  }
+
+  zine-page {
+  	width: 5.5in;
+  	height: 8.5in;
+  	float: left;
   }
 }
 
