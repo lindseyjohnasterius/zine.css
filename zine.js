@@ -74,6 +74,10 @@ class ZinePageContent extends HTMLElement {
     const scale = window.innerHeight / (8.5 * 96)
 
     this.style.transform = `scale(${scale})`
+    document.addEventListener('resize', () => {
+      const scale = window.innerHeight / (8.5 * 96)
+      this.style.transform = `scale(${scale})`
+    })
   }
 }
 

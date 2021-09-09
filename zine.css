@@ -110,8 +110,8 @@ zine-page-content.spread {
   }
 
   zine-page-content {
-		transform:unset ;
-		transform-origin: unset;
+		transform:unset !important;
+		transform-origin: unset !important;
 		margin: 0;
 		background-color: white;
 	}
