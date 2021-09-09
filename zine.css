@@ -1,0 +1,169 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+body {
+  margin:none;
+  padding:none;
+  background-color:black;
+  color:white;
+}
+
+zine-wrapper {
+  display:block;
+  margin:none;
+  padding:none;
+  position:fixed;
+  left:0px;
+  top:0px;
+  height:100%;
+  width:100%;
+  overflow:hidden;
+}
+
+button {
+  background-color:transparent;
+  border: 1px solid white;
+  color:white;
+  border-radius: 1px;
+  padding: 1em;
+  min-width: 4em;
+  margin: 0.25em;
+}
+
+button:active {
+  background-color:rgba(255,255,255,0.5);  
+}
+
+button:hover {
+  background-color:rgba(255,255,255,0.2);  
+}
+
+
+
+zine-cover {
+  display:block;
+  position:relative;
+  width: auto;
+  width:200vw;
+  height:100vh;
+  overflow:hidden;
+  aspect-ratio: 11 / 8.5;
+}
+
+
+zine-spread {
+  display:block;
+  position:relative;
+  width: 200vw;
+  height: 100vh;
+  clear:both;
+  overflow:hidden;
+  aspect-ratio: 11 / 8.5; 
+}
+
+zine-spread img {
+  width:100%;
+  height:auto;
+  max-width:100%;
+  position:absolute;
+  left:0px;
+  bottom:0px;
+}
+
+zine-left-page img, zine-right-page img {
+
+    height: auto;
+    width: auto;
+    max-height: 100%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+
+}
+
+
+zine-left-page{
+  position:relative;
+  display:block;
+  float:left;
+  width:100vw;
+  height:100vh;
+  aspect-ratio: 5.5 / 8.5;
+  overflow:hidden;
+}
+
+zine-right-page {
+  position:relative;
+  display:block;
+  float:right;
+  width:100vw;
+  height:100vh;
+  apsect-ratio: 5.5 / 8.5; 
+  overflow:hidden;
+}
+
+@media print {
+  
+  @page {
+    size: landscape;
+    margin: 0;
+    bleed: 0;
+    
+  }
+}
+
+.midground, .foreground, .background, .center, .left, .right, .top, .bottom {
+  position: absolute;  
+}
+
+.half-height {
+  width: 100%;
+  height:auto;
+}
+
+.center {
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.middle {
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.top {
+  top: 0em;  
+}
+
+.bottom {
+  bottom: 33%;  
+}
+
+.left {
+  left: 33%;;  
+}
+
+.right {
+  right: 0em;  
+}
+
+.background {
+  z-index:-1000;
+}
+
+.foreground {
+  z-index: 1000;
+}
+
+.stretch {
+  min-width:100%;
+  min-height:100%;
+  width:auto;
+  height:auto;
+  max-width:100%;
+}
+
