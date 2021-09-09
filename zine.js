@@ -71,6 +71,9 @@ customElements.define('zine-wrapper', ZineWrapper)
 
 class ZinePageContent extends HTMLElement {
   connectedCallback(){
+    const scale = window.innerHeight / (8.5 * 96)
+
+    this.style.transform = `scale(${scale})`
   }
 }
 

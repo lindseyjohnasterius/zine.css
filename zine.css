@@ -45,7 +45,6 @@ zine-spread-page {
 }
 
 zine-page-content {
-	transform: scale(0.75);
 	transform-origin: 0px 0px;
 	margin-left: auto;
 	margin-right: auto;
