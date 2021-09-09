@@ -67,7 +67,9 @@ zine-page-content.spread {
 @media print {
   
   @page {
-    size: landscape;
+ 		width: 297mm; 
+ 		height: 209mm;
+ 		size: landscape;
     margin: 0;
     bleed: 0;
   }
@@ -77,10 +79,29 @@ zine-page-content.spread {
 
   }
 
+  zine-controls {
+  	display: none;
+  }
+
   zine-page {
   	width: 5.5in;
   	height: 8.5in;
   	float: left;
+  	-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+
+  }
+
+  zine-page::-webkit-scrollbar {
+  display: none;
+}
+
+  zine-page:nth-child(even){
+  	page-break-after: always;
+  }
+
+  zine-spread-page {
+  	page-break-after: always;
   }
 }
 
