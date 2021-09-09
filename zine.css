@@ -1,6 +1,5 @@
 body {
 	font-size: 12pt;
-	background-color: #5f5f5f;
 }
 
 zine-wrapper {
@@ -13,6 +12,7 @@ zine-wrapper {
 	-ms-overflow-style: none;  /* IE and Edge */
   	scrollbar-width: none;  /* Firefox */
 }
+
 
 zine-wrapper::-webkit-scrollbar {
   display: none;
@@ -27,11 +27,14 @@ zine-page, zine-spread-page {
 	overflow: scroll;
 }
 
+
 zine-spread-page {
 	overflow-x: scroll;
 }
 
 zine-page-content {
+	transform: scale(0.75);
+	transform-origin: 0px 0px;
 	margin-left: auto;
 	margin-right: auto;
 	width: calc(5.5in - 48pt);
@@ -40,8 +43,7 @@ zine-page-content {
 	box-sizing: border-box;
 	display: block;
 	overflow: hidden;
-	border-right: 4px #8f8f8f;
-	background-color: white;
+	margin-bottom: -48pt;
 }
 
 zine-page-content.spread {
@@ -73,8 +75,10 @@ zine-page-content.spread {
 }
 
 @media (orientation: landscape) {
+
 }
 
 @media (orientation: portrait) {
 
 }
+
