@@ -25,20 +25,32 @@
   <zine-wrapper>
     <zine-cover>
       <!-- Front and back of the Zine respectively -->
-      <zine-page id="front-page"></zine-page>
       <zine-page id="back-page"></zine-page>
+      <zine-page id="front-page"></zine-page>
+
     </zine-cover>
 
+
     <zine-page id="page-1"></zine-page>
+    <zine-page id="page-6"></zine-page>
+
+
     <zine-page id="page-2"></zine-page>
 
+    <zine-page id="page-5"></zine-page>
+
+    
     <zine-spread-page id="inside-spread">
     </zine-spread-page>
 
-    <zine-page id="page-5"></zine-page>
-    <zine-page id="page-6"></zine-page>
 
   </zine-wrapper>
+
+  <script>
+    dispatch('GO TO PAGE', 'front-page')
+
+
+  </script>
 
 </body>
 </html>

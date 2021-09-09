@@ -15,6 +15,7 @@ document.addEventListener('GO TO PAGE', (e) => {
   document.querySelector('zine-wrapper').scrollTo({top, left, behavior:'smooth'})
 })
 
+
 document.addEventListener('NEXT PAGE', (e) => {
   counter++
 
