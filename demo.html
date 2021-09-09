@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The web site of zine-css</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <script src="/zine.js"></script>
+
+    <link href="/zine.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+
+  <zine-wrapper>
+
+  
+    <zine-cover>
+      <zine-left-page>
+        <h1>Zine-css</h1>
+        <p>A simple way to generate 8 page zines using HTML</p>
+      </zine-left-page>
+      <zine-right-page>
+        <h2>Thanks for reading!</h2>
+        <p>This zine was written by LNSY</p>
+      </zine-right-page>
+    </zine-cover>
+    
+    <zine-spread>
+      <zine-left-page>
+        <h2>Using Zine CSS</h2>
+        <p><a href="/zine.css">Download and include this CSS</a></p>
+        
+        <p>This is what a template looks like:</p>
+        <pre>
+&lt;zine-wrapper&gt;
+  &lt;zine-cover&gt;
+    &lt;zine-left-page&gt;
+    &lt;/zine-left-page&gt;
+    &lt;zine-right-page&gt;
+    &lt;/zine-right-page&gt;
+  &lt;/zine-cover&gt;
+  &lt;zine-spread&gt;
+    &lt;zine-left-page&gt;
+    &lt;/zine-left-page&gt;
+    &lt;zine-right-page&gt;
+    &lt;/zine-right-page&gt;
+  &lt;/zine-spread&gt;
+  &lt;zine-spread&gt;
+    &lt;zine-left-page&gt;&lt;/zine-left-page&gt;
+    &lt;zine-right-page&gt;&lt;/zine-right-page&gt;
+  &lt;/zine-spread&gt;
+  &lt;zine-spread&gt;
+    &lt;zine-left-page&gt;&lt;/zine-left-page&gt;
+    &lt;zine-right-page&gt;&lt;/zine-right-page&gt;
+  &lt;/zine-spread&gt;
+&lt;/zine-wrapper&gt;
+
+        
+        </pre>
+      </zine-left-page>
+      <zine-right-page>
+        <p>Images are layed out according to the rule of thirds for each page</p>
+        
+        <p>the options are:</p>
+        <pre>
+.center 
+.middle 
+.left 
+.top 
+.right 
+.bottom 
+        </pre>
+      
+      </zine-right-page>
+    </zine-spread>
+    <zine-spread>
+      <zine-left-page>
+        <pre>
+        .foreground 
+          .midground 
+          .background
+        </pre>
+      </zine-left-page>
+      <zine-right-page>
+        <p>Should Slide back and forth between these with next button</p>
+      </zine-right-page>
+    </zine-spread>
+    
+    <zine-spread>
+      <zine-left-page>
+        <h1>Back page</h1>
+      </zine-left-page>
+      <zine-right-page>
+        <h1>Last Page</h1>
+      </zine-right-page>
+    </zine-spread>
+  </zine-wrapper>
+
+  </body>
+</html>
