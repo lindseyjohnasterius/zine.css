@@ -1,5 +1,11 @@
 body {
 	font-size: 12pt;
+		-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 zine-wrapper {
@@ -13,7 +19,6 @@ zine-wrapper {
   	scrollbar-width: none;  /* Firefox */
 }
 
-
 zine-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -25,6 +30,13 @@ zine-page, zine-spread-page {
 	box-sizing: border-box;
 	position: relative;
 	overflow: scroll;
+		-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+
+}
+
+zine-page::-webkit-scrollbar, zine-spread-page::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -37,13 +49,14 @@ zine-page-content {
 	transform-origin: 0px 0px;
 	margin-left: auto;
 	margin-right: auto;
+	left: 50%;
+	top: 50%;
 	width: calc(5.5in - 48pt);
 	height: calc(8.5in - 48pt);
 	padding: 24pt;
 	box-sizing: border-box;
 	display: block;
 	overflow: hidden;
-	margin-bottom: -48pt;
 }
 
 zine-page-content.spread {
@@ -60,24 +73,14 @@ zine-page-content.spread {
 	height: 100%;
 }
 
-.background {
-	z-index: -10;
+.foreground {
+	z-index: 10;
 }
 
-.printer-line-break {
-	display: none;
-}
+
 
 @media print {
 
-	.printer-line-break {
-		display: block;
-		width: 100%;
-		height: 1px;
-		opacity: 0;
-		page-break-after: always;
-
-	}
 
 	body {
 		width: 11in;
@@ -86,6 +89,7 @@ zine-page-content.spread {
 		overflow-x: hidden;
 		padding: 0;
 		margin: 0;
+		background-color: white !important;
 	}
   
   @page {
@@ -103,11 +107,20 @@ zine-page-content.spread {
   	position: unset;
   	padding: 0;
   	margin: 0;
+  	background-color: white !important;
   }
 
   zine-page-content {
 		transform:unset ;
+		transform-origin: unset;
 		margin: 0;
+		background-color: white;
+	}
+
+	zine-page-content.spread {
+			transform:unset ;
+		transform-origin: unset;
+	
 	}
 
   zine-controls {
@@ -120,8 +133,6 @@ zine-page-content.spread {
   	height:8.5in;
   	padding: 0;
   	margin: 0;
-  	-ms-overflow-style: none;  /* IE and Edge */
-  	scrollbar-width: none;  /* Firefox */
   }
 
   zine-spread-page {
@@ -130,14 +141,6 @@ zine-page-content.spread {
   	padding: 0;
   	margin: 0;
   }
-
-  zine-spread-page::-webkit-scrollbar {
-	  display: none;
-	}
-
-  zine-page::-webkit-scrollbar {
-	  display: none;
-	}
 
   a::after {
   	content: " (" attr(href) ")";

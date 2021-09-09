@@ -12,7 +12,7 @@ document.addEventListener('GO TO PAGE', (e) => {
   const target = document.querySelector(`#${e.detail}`)
   const top = target.offsetTop
   const left = 0
-  document.querySelector('zine-wrapper').scrollTo({top, left, behavior:'smooth'})
+  document.querySelector('zine-wrapper').scrollTo({top, left})
 })
 
 
@@ -49,13 +49,13 @@ class ZineControls extends HTMLElement {
   
     <details id="zine-controls" style="position:fixed;left:1em;top:1em;z-index:9000;">
       <summary> </summary>
-      <button onclick="dispatch('GO TO PAGE','front-page')">front-page</button><br>
+      <button onclick="dispatch('GO TO PAGE','front-page')">Front</button><br>
       <button onclick="dispatch('GO TO PAGE','page-1')">Page 1</button><br>
       <button onclick="dispatch('GO TO PAGE','page-2')">Page 2</button><br>
-      <button onclick="dispatch('GO TO PAGE','inside-spread')">Inside Spread</button><br>
+      <button onclick="dispatch('GO TO PAGE','spread')">Spread</button><br>
       <button onclick="dispatch('GO TO PAGE','page-5')">Page 5</button><br>
       <button onclick="dispatch('GO TO PAGE','page-6')">Page 6</button><br>
-      <button onclick="dispatch('GO TO PAGE','back-page')">Back Cover</button>
+      <button onclick="dispatch('GO TO PAGE','back-page')">Back</button>
     </details>
 `
   }
