@@ -208,31 +208,6 @@ customElements.define('zine-controls', ZineControls)
 
 
 
-
-
-class ZineCover extends HTMLElement {
-  connectedCallback(){
-  }
-
-  static get observedAttributes() {
-    return [];
-  }
-
-  attributeChangedCallback(name, old_value, new_value){
-    switch(name){
-      default:
-    }
-  }
-
-}
-
-customElements.define('zine-cover', ZineCover)
-
-
-
-
-
-
 class ZineSpread extends HTMLElement {
   connectedCallback(){
   }
@@ -251,6 +226,14 @@ class ZineSpread extends HTMLElement {
 
 customElements.define('zine-spread', ZineSpread)
 
+
+
+
+class ZineCover extends ZineSpread {
+
+}
+
+customElements.define('zine-cover', ZineCover)
 
 
 
@@ -279,7 +262,18 @@ customElements.define('zine-left-page', ZineLeftPage)
 
 
 
-class ZineRightPage extends HTMLElement {
+class ZineRightPage extends ZineLeftPage {
+
+}
+
+customElements.define('zine-right-page', ZineRightPage)
+
+
+
+
+
+
+class ZinePageContent extends HTMLElement {
   connectedCallback(){
   }
 
@@ -295,6 +289,6 @@ class ZineRightPage extends HTMLElement {
 
 }
 
-customElements.define('zine-right-page', ZineRightPage)
+customElements.define('zine-page-content', ZinePageContent)
 
 

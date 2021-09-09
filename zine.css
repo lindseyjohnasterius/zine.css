@@ -5,23 +5,32 @@
 body {
   margin:none;
   padding:none;
-  background-color:black;
-  color:white;
+  overflow: hidden;
 }
 
+zine-page-content {
+  display: block;
+  box-sizing: content-box;
+  border: 1px dashed black;
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  aspect-ratio: 5.5 / 8.5;
+}
 zine-wrapper {
   display:block;
+  position: fixed;
+  left: 0px;
+  top: 0px;
   margin:none;
   padding:none;
-  position:fixed;
-  left:0px;
-  top:0px;
-  height:100%;
-  width:100%;
+  aspect-ratio: 11 / 8.5; 
+  width: 200vw;
+  height: auto;
   overflow:hidden;
 }
 
-button {
+zine-wrapper button {
   background-color:transparent;
   border: 1px solid white;
   color:white;
@@ -31,57 +40,54 @@ button {
   margin: 0.25em;
 }
 
-button:active {
+zine-wrapper button:active {
   background-color:rgba(255,255,255,0.5);  
 }
 
-button:hover {
+zine-wrapper button:hover {
   background-color:rgba(255,255,255,0.2);  
 }
 
 
 
-zine-cover {
-  display:block;
+zine-cover, zine-spread {
+  display:flex;
   position:relative;
-  width: auto;
-  width:200vw;
-  height:100vh;
-  overflow:hidden;
-  aspect-ratio: 11 / 8.5;
-}
-
-
-zine-spread {
-  display:block;
-  position:relative;
-  width: 200vw;
   height: 100vh;
   clear:both;
   overflow:hidden;
   aspect-ratio: 11 / 8.5; 
 }
 
+zine-cover > img, zine-cover > svg, zine-spread > svg, zine-spread > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
 
-zine-left-page{
-  position:relative;
+
+zine-left-page, zine-front-cover{
+  position:absolute;
+  left: 0pt;
   display:block;
-  float:left;
-  width:100vw;
-  height:100vh;
-  aspect-ratio: 5.5 / 8.5;
+  width:50%;
+  float: left;
+  height:100%;
   overflow:hidden;
 }
 
-zine-right-page {
-  position:relative;
+zine-right-page, zine-back-cover {
+  position:absolute;
   display:block;
-  float:right;
-  width:100vw;
-  height:100vh;
-  apsect-ratio: 5.5 / 8.5; 
+  float: right;
+  left: 50%;
+  width:50%;
+  height:100%;
   overflow:hidden;
 }
+
 
 @media print {
   
@@ -97,9 +103,6 @@ zine-right-page {
   zine-wrapper { width: 100vw; }
   zine-spread { width: 100vw; }
   zine-cover { width: 100vw; }
-
-  zine-left-page { width: 50vw; }
-  zine-right-page {width:  50vw; }
 
 }
 
