@@ -72,12 +72,19 @@ customElements.define('zine-wrapper', ZineWrapper)
 class ZinePageContent extends HTMLElement {
   connectedCallback(){
     const scale = window.innerHeight / (8.5 * 96)
+    const translate_percent = (scale / window.innerWidth * -1);
+    this.style.transform = `scale(${scale}) translate(${translate_percent}px, 0px)`
 
-    this.style.transform = `scale(${scale})`
     document.addEventListener('resize', () => {
-      const scale = window.innerHeight / (8.5 * 96)
-      this.style.transform = `scale(${scale})`
-    })
+      this.setTransform()
+      })
+  }
+
+  setTransform(){
+    const scale = window.innerHeight / (8.5 * 96)
+    const translate_percent = (scale * 100) / 2
+    this.style.transform = `scale(${scale}) translate(${translate_percent}%, ${translate_percent}%)`
+
   }
 }
 
