@@ -50,8 +50,8 @@ zine-page-content {
 	margin-right: auto;
 	left: 50%;
 	top: 50%;
-	width: calc(5.5in - 48pt);
-	height: calc(8.5in - 48pt);
+	width: calc(5.5in - 96pt);
+	height: calc(8.5in - 96pt);
 	padding: 24pt;
 	box-sizing: border-box;
 	display: block;
@@ -75,8 +75,16 @@ zine-page-content.spread {
 	margin-bottom: -48pt;
 }
 
+.half-height {
+	height: 50%;
+	width: auto;
+	clear: both;
+	margin: 24pt auto;
+}
+
 .foreground {
-	z-index: 10;
+	position: relative;
+	z-index: 1000;
 }
 
 
