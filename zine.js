@@ -23,7 +23,7 @@ document.addEventListener('NEXT PAGE', (e) => {
   const zine_controls = document.querySelector('#zine-controls')
   const zine_controls_buttons = [...zine_controls.querySelectorAll('button')]
   
-  zine_controls_buttons[counter].click()
+ try { zine_controls_buttons[counter].click() } catch(e){console.warn(e)}
 
 })
 
@@ -56,8 +56,6 @@ class ZineControls extends HTMLElement {
       page_id: page.getAttribute('id'),
       page_name: page.getAttribute('name')
     }
-
-    console.log(page_controller)
     this.generateZineControl(page_controller)
    })
   }

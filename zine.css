@@ -39,12 +39,6 @@ zine-page {
 }
 
 
-zine-page.spread zine-page-content {
-	aspect-ratio: 14 / 8.5;
-	width: 100%;
-	height: auto;
-
-}
 
 zine-page-content {
 	display: block;
@@ -55,18 +49,30 @@ zine-page-content {
 	margin-right: auto;
 	height: auto;
 	border: 1px dashed rgba(200,200,200,0.8);
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
 }
 
+.spread zine-page-content {
+	aspect-ratio: 14 / 8.5;
+	width: 100%;
+	height: auto;
+}
+
+
 @media (orientation: landscape) {
-	zine-page-content.spread zine-page-content {
+	.spread zine-page-content {
 		width: 100vw;
 		height: auto;
 	}
 }
 
 @media (orientation: portrait) {
-	zine-page-content.spread zine-page-content {
+	.spread zine-page-content {
 		width: 200vw;
+		position: absolute;
+		left: 0pt;
+		top: 0pt;
+
 		height: auto;
 	}
 }
@@ -115,7 +121,7 @@ zine-page-content {
   }
 
   zine-wrapper {
-  	overflow: scroll;
+  	overflow: scroll !important;
   	display: block;
   	position: unset;
   	padding: 0;
