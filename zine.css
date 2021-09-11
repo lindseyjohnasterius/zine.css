@@ -1,10 +1,8 @@
 body {
 	font-size: 12pt;
-		-ms-overflow-style: none;  /* IE and Edge */
-  	scrollbar-width: none;  /* Firefox */
-}
-
-body::-webkit-scrollbar {
+	-ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}::-webkit-scrollbar {
   display: none;
 }
 
@@ -66,27 +64,6 @@ zine-page-content.spread {
 	margin-bottom: -48pt;
 }
 
-.stretch {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	margin-bottom: -48pt;
-}
-
-.half-height {
-	height: 50%;
-	position: relative;
-	width: auto;
-	clear: both;
-	margin: 24pt auto;
-}
-
-.foreground {
-	position: relative;
-	z-index: 1000;
-}
 
 #zine-controls {
 	height: calc(100% - 4em);

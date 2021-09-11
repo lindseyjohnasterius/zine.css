@@ -9,27 +9,15 @@ fs.mkdir(zine_name, (err) => {
     console.log(err)
     return
   } else {
-    const files = [
-      'index.html', 
-      'zine.css', 
-      'zine.js', 
-      'front-page.html', 
-      'back-page.html', 
-      'spread.html', 
-      'inside-front-cover.html', 
-      'inside-back-cover.html',
-      'page-1.html',
-      'page-2.html',
-      'page-3.html',
-      'page-6.html',
-      'page-7.html',
-      'page-8.html',
-      'styles.css'
-    ]
-
-    files.forEach(file => {
-      fs.copyFile(file,`${__dirname}/${zine_name}/${file}`, (err) => {
-        if(err) console.log(err)
+    fs.readdir('./', (err, files) => {
+      files.forEach(file => {
+        console.log(file)
+        const ignored_files = ['.git', '.git-ignore', 'package-lock.json', 'node_modules',zine_name]
+        if(ignored_files.indexOf(file) === -1){
+          fs.copyFile(file,`${__dirname}/${zine_name}/${file}`, (err) => {
+            if(err) console.log(err)
+          })        
+        }
       })
     })
   }
