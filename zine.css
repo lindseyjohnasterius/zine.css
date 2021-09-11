@@ -1,3 +1,8 @@
+::root {
+	--paper-color: white;
+	--cover-color: white;
+}
+
 body {
 	font-size: 12pt;
 	-ms-overflow-style: none !important;  /* IE and Edge */
@@ -6,6 +11,25 @@ body {
   display: none;
 }
 
+zine-margin {
+
+	display: block;
+	margin: 1cm;
+}
+
+zine-header {
+	display: block;
+	width: 100%;
+	clear: both;
+	height: 48pt;
+}
+
+zine-footer {
+	display: block;
+	width: 100%;
+	clear: both;
+	height: 24pt;
+}
 
 
 zine-wrapper {
@@ -16,11 +40,10 @@ zine-wrapper {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+
 	-ms-overflow-style: none;  /* IE and Edge */
   	scrollbar-width: none;  /* Firefox */
-}
-
-zine-wrapper::-webkit-scrollbar {
+}::-webkit-scrollbar {
   display: none;
 }
 
@@ -43,13 +66,13 @@ zine-page {
 zine-page-content {
 	display: block;
 	overflow: hidden;
+	background-color: var(--paper-color);
 	aspect-ratio: 7 / 8.5;
 	max-height: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	height: auto;
-	border: 1px dashed rgba(200,200,200,0.8);
-	box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+
 }
 
 .spread zine-page-content {
