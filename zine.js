@@ -4,7 +4,8 @@ function dispatch(name, detail = {}, div = document){
 }
 
 
-let counter = 0 
+let counter = 1 
+let page_count = 12
 
 
 document.addEventListener('GO TO PAGE', (e) => {
@@ -18,7 +19,7 @@ document.addEventListener('GO TO PAGE', (e) => {
 document.addEventListener('NEXT PAGE', (e) => {
   counter++
 
-  if(counter > 6) counter = 0
+  if(counter > page_count) counter = 0
   const zine_controls = document.querySelector('#zine-controls')
   const zine_controls_buttons = [...zine_controls.querySelectorAll('button')]
   
@@ -35,11 +36,9 @@ document.addEventListener('PREV PAGE', (e) => {
 })
 
 class ZineWrapper extends HTMLElement {
-  connectedCallback(){
-    const zine_controls = document.createElement('zine-controls')
-    this.prepend(zine_controls)
-  }
+
 }
+customElements.define('zine-wrapper', ZineWrapper)
 
 class ZineControls extends HTMLElement {
   connectedCallback(){
@@ -51,9 +50,16 @@ class ZineControls extends HTMLElement {
       <div id="index-buttons"></div>
     </details>`
 
-    document.addEventListener('ZINE PAGE LOADED', (e) => {
-      this.generateZineControl(e.detail)
-    })
+   ;[...document.querySelectorAll('zine-page')].forEach(page => {
+
+    const page_controller = {
+      page_id: page.getAttribute('id'),
+      page_name: page.getAttribute('name')
+    }
+
+    console.log(page_controller)
+    this.generateZineControl(page_controller)
+   })
   }
 
   generateZineControl(new_controller){
@@ -67,27 +73,10 @@ customElements.define('zine-controls', ZineControls)
 
 
 
-customElements.define('zine-wrapper', ZineWrapper)
 
 
 class ZinePageContent extends HTMLElement {
-  connectedCallback(){
-    const scale = 1
-    // this.style.transformOrigin = `${window.innerWidth / 2}px ${window.innerHeight / 2}px`
 
-    this.style.transform = `scale(${scale})`
-
-    document.addEventListener('resize', () => {
-      this.setTransform()
-      })
-  }
-
-  setTransform(){
-    const scale = window.innerHeight / (8.5 * 96)
-    const translate_percent = (scale * 100) / 2
-    this.style.transform = `scale(${scale}) translate(${translate_percent}%, ${translate_percent}%)`
-
-  }
 }
 
 customElements.define('zine-page-content', ZinePageContent)
@@ -101,7 +90,7 @@ class ZinePage extends HTMLElement {
     .then(res => res.text())
     .then(res => {
       const zine_content = document.createElement('zine-page-content')
-      zine_content.innerHTML = res
+      zine_content.innerHTML += res
       this.appendChild(zine_content)
       dispatch('ZINE PAGE LOADED', {page_id: this.id, page_name: this.name })
     })
@@ -119,7 +108,7 @@ class ZineSpreadPage extends HTMLElement {
     .then(res => {
       const zine_content = document.createElement('zine-page-content')
       zine_content.classList.add('spread')
-      zine_content.innerHTML = res
+      zine_content.innerHTML += res
       this.appendChild(zine_content)
     })
 
