@@ -19,7 +19,7 @@ document.addEventListener('GO TO PAGE', (e) => {
 document.addEventListener('NEXT PAGE', (e) => {
   counter++
 
-  if(counter > page_count) counter = 0
+  if(counter > page_count - 1) counter = 0
   const zine_controls = document.querySelector('#zine-controls')
   const zine_controls_buttons = [...zine_controls.querySelectorAll('button')]
   
@@ -29,7 +29,7 @@ document.addEventListener('NEXT PAGE', (e) => {
 
 document.addEventListener('PREV PAGE', (e) => {
   counter--
-  if(counter < 0) counter = 6
+  if(counter < 0) counter = page_count - 1
   const zine_controls = document.querySelector('#zine-controls')
   const zine_controls_buttons = [...zine_controls.querySelectorAll('button')]  
   zine_controls_buttons[counter].click()
