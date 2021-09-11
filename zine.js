@@ -8,7 +8,6 @@ let counter = 0
 
 
 document.addEventListener('GO TO PAGE', (e) => {
-  console.log('GO TO PAGE', e.detail)
   const target = document.querySelector(`#${e.detail}`)
   const top = target.offsetTop
   const left = 0
@@ -49,15 +48,17 @@ class ZineControls extends HTMLElement {
   
     <details id="zine-controls" style="position:fixed;left:1em;top:1em;z-index:9000;">
       <summary> </summary>
-      <button onclick="dispatch('GO TO PAGE','front-page')">Front</button><br>
-      <button onclick="dispatch('GO TO PAGE','page-1')">Page 1</button><br>
-      <button onclick="dispatch('GO TO PAGE','page-2')">Page 2</button><br>
-      <button onclick="dispatch('GO TO PAGE','spread')">Spread</button><br>
-      <button onclick="dispatch('GO TO PAGE','page-5')">Page 5</button><br>
-      <button onclick="dispatch('GO TO PAGE','page-6')">Page 6</button><br>
-      <button onclick="dispatch('GO TO PAGE','back-page')">Back</button>
-    </details>
-`
+      <div id="index-buttons"></div>
+    </details>`
+
+    document.addEventListener('ZINE PAGE LOADED', (e) => {
+      this.generateZineControl(e.detail)
+    })
+  }
+
+  generateZineControl(new_controller){
+    document.querySelector('#index-buttons').innerHTML += `<button onclick="dispatch('GO TO PAGE','${new_controller.page_id}')">
+    ${new_controller.page_name}</button><br>`
   }
 
 }
@@ -95,12 +96,14 @@ customElements.define('zine-page-content', ZinePageContent)
 class ZinePage extends HTMLElement {
   connectedCallback(){
     this.id = this.getAttribute('id')
+    this.name = this.getAttribute('name')
     fetch(this.id + '.html')
     .then(res => res.text())
     .then(res => {
       const zine_content = document.createElement('zine-page-content')
       zine_content.innerHTML = res
       this.appendChild(zine_content)
+      dispatch('ZINE PAGE LOADED', {page_id: this.id, page_name: this.name })
     })
   }
 }

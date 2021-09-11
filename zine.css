@@ -8,10 +8,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+
+
 zine-wrapper {
-	position: fixed;
-	left: 0;
-	top: 0;
+	display: inline-block;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -30,8 +30,8 @@ zine-page, zine-spread-page {
 	box-sizing: border-box;
 	position: relative;
 	overflow: scroll;
-		-ms-overflow-style: none;  /* IE and Edge */
-  	scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
 
 }
 
@@ -88,7 +88,21 @@ zine-page-content.spread {
 	z-index: 1000;
 }
 
+#zine-controls {
+	height: calc(100% - 4em);
+ 	overflow-y: hidden;
+}
 
+#index-buttons {
+	height: 100%;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}::-webkit-scrollbar {
+  display: none;
+}
+
+}
 
 @media print {
 
@@ -137,6 +151,8 @@ zine-page-content.spread {
   zine-controls {
   	display: none;
   }
+
+
 
   zine-page {
   	float: left;
