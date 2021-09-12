@@ -9,8 +9,6 @@ if(!_zine_name){
   return
 }
 
-
-
 function createFile(file_name, file_data, zine_name){
   fs.writeFile(`${__dirname}/${zine_name}/${file_name}`, file_data, (err) => {
     if(err) console.log(err)
@@ -18,17 +16,12 @@ function createFile(file_name, file_data, zine_name){
 }
 
 function copyTemplate(template_name, zine_name){
-
   fs.copyFile(`${__dirname}/templates/${template_name}.css`, `${__dirname}/${zine_name}/${template_name}.css`, (err) => {
     if (err) {
       console.log("An Error Occured:", err);
     }
   })
-
 }
-
-
-
 
 
 function generateZine(name, template = 'a4', page_count = 12){
@@ -42,12 +35,12 @@ function generateZine(name, template = 'a4', page_count = 12){
   let i = 0
   while(i < page_count){
     index_pages.push(`
-      <zine-page src="page-${i+1}.html">
-        <zine-header>${name}</zine-header>
-        <zine-footer><div class="page-number">${i+1}</div></zine-footer>
+      <zine-page 
+        src="page-${i+1}.html" 
+        id="page-${i+1}" 
+        name="page-${i+1}">
       </zine-page>`
     )
-
     pages.push(`page-${i+1}.html`)
     i++
   }
@@ -56,17 +49,50 @@ function generateZine(name, template = 'a4', page_count = 12){
 
   if(template !== 'story-board' && template !== 'report'){
 
-    index_pages.splice(middle_page, 2, `
-      <zine-spread-page src="spread.html">
-      </zine-spread-page>`)
 
-    pages.splice(middle_page,2, `spread.html`)
+    const last_index_page = index_pages.pop()
+    index_pages.splice(0,0,last_index_page)
 
     const last_page = pages.pop()
     pages.splice(0,0,last_page)
 
-    const last_index_page = index_pages.pop()
-    index_pages.splice(0,0,last_index_page)
+    pages[0] = 'back-cover.html'
+    index_pages[0] =  `
+      <zine-page 
+        src="back-cover.html" 
+        id="back-cover" 
+        name="Back Cover">
+      </zine-page>`
+    
+    pages[1] = 'front-cover.html'
+    index_pages[1] =  `
+      <zine-page 
+        src="front-cover.html" 
+        id="front-cover" 
+        name="Front Cover">
+      </zine-page>`
+
+    pages[2] = 'inside-front-cover.html'
+    index_pages[2] =  `
+      <zine-page 
+        src="inside-front-cover.html" 
+        id="inside-front-cover" 
+        name="Inside Front Cover">
+      </zine-page>`
+
+    pages[pages.length - 1] = 'inside-back-cover.html'
+    index_pages[index_pages.length - 1] =  `
+      <zine-page 
+        src="inside-back-cover.html" 
+        id="inside-back-cover" 
+        name="Inside Back Cover">
+      </zine-page>`
+
+    pages.splice(middle_page,2, `spread.html`)
+    index_pages.splice(middle_page, 2, `
+      <zine-page class="spread" src="spread.html" name="Spread" id="spread">
+      </zine-page>`)
+
   }
 
 
@@ -89,17 +115,19 @@ function generateZine(name, template = 'a4', page_count = 12){
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZINE-CSS</title>
+    <title>${name}</title>
     <script src="zine.js"></script>
     <link href="zine.css" rel="stylesheet" type="text/css" media="all">
     <link href="${template}.css" rel="stylesheet" type="text/css" media="all">
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all">
 
   </head>
   <body>
     <zine-wrapper class="${template}">
-      ${index_pages}
+      ${index_pages.join('\n')}
+      <zine-controls></zine-controls>
     </zine-wrapper>
-
+    <script>dispatch('GO TO PAGE', '${pages[1]}')</script>
   </body>
 </html>`
 
@@ -112,10 +140,15 @@ function generateZine(name, template = 'a4', page_count = 12){
     }
     createFile('index.html', index_template, name)
 
-    pages.forEach(file_name => {
+    pages.forEach((file_name,i) => {
       createFile(file_name, `
 <!-- ${file_name} -->
-<zine-wrapper></zine-wrapper>
+<zine-margin>
+
+    <zine-header>${name}</zine-header>
+    <zine-footer><div class="page-number">${i}</div></zine-footer>
+
+</zine-margin>
 
       `, name)
     })
@@ -134,6 +167,11 @@ function generateZine(name, template = 'a4', page_count = 12){
       }
     })
 
+    fs.copyFile(`${__dirname}/templates/styles.css`, `${__dirname}/${name}/styles.css`, (err) => {
+      if (err) {
+        console.log("An Error Occured:", err);
+      }
+    })
 
   })
 }

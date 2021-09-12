@@ -4,13 +4,15 @@ function dispatch(name, detail = {}, div = document){
 }
 
 
-let counter = 1 
+let counter = 0
 let page_count = 12
 
 
 document.addEventListener('GO TO PAGE', (e) => {
   const target = document.querySelector(`#${e.detail}`)
+  if(target === null) return
   const top = target.offsetTop
+
   const left = 0
   document.querySelector('zine-wrapper').scrollTo({top, left})
 })
@@ -50,8 +52,8 @@ class ZineControls extends HTMLElement {
       <div id="index-buttons"></div>
     </details>`
 
-   ;[...document.querySelectorAll('zine-page')].forEach(page => {
-
+   ;[...document.querySelectorAll('zine-page')].forEach((page,i) => {
+    page_count = i + 1
     const page_controller = {
       page_id: page.getAttribute('id'),
       page_name: page.getAttribute('name')
@@ -82,15 +84,15 @@ customElements.define('zine-page-content', ZinePageContent)
 
 class ZinePage extends HTMLElement {
   connectedCallback(){
-    this.id = this.getAttribute('id')
+    this.src = this.getAttribute('src')
     this.name = this.getAttribute('name')
-    fetch(this.id + '.html')
+    fetch(this.src)
     .then(res => res.text())
     .then(res => {
       const zine_content = document.createElement('zine-page-content')
       zine_content.innerHTML += res
       this.appendChild(zine_content)
-      dispatch('ZINE PAGE LOADED', {page_id: this.id, page_name: this.name })
+      dispatch('ZINE PAGE LOADED', { page_id: this.id, page_name: this.name })
     })
   }
 }
@@ -101,7 +103,8 @@ customElements.define('zine-page', ZinePage)
 class ZineSpreadPage extends HTMLElement {
   connectedCallback(){
     this.id = this.getAttribute('id')
-    fetch(this.id + '.html')
+    this.src = this.getAttribute('src')
+    fetch(this.src)
     .then(res => res.text())
     .then(res => {
       const zine_content = document.createElement('zine-page-content')
