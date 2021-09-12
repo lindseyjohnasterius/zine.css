@@ -19,7 +19,7 @@ function createFile(file_name, file_data, zine_name){
 
 function copyTemplate(template_name, zine_name){
 
-  fs.copyFile(`${__dirname}/templates/${template_name}.css`, `${__dirname}/${zine_name}/${template_name}`, (err) => {
+  fs.copyFile(`${__dirname}/templates/${template_name}.css`, `${__dirname}/${zine_name}/${template_name}.css`, (err) => {
     if (err) {
       console.log("An Error Occured:", err);
     }
