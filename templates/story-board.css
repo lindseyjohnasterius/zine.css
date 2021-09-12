@@ -1,0 +1,17 @@
+zine-page-content {
+  aspect-ratio: 16 / 9;
+}
+
+@media print {
+
+  body {
+    width: 14in;
+    height: 25.5in;
+  }
+  
+  @page {
+    width: 14in; 
+    height: 8.5in;
+  }
+
+}

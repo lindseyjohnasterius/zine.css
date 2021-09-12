@@ -12,25 +12,30 @@ body {
 }
 
 zine-margin {
-
 	display: block;
+	width: calc(100% - 2cm);
+	height: calc(100% - 2cm);
 	margin: 1cm;
 }
 
 zine-header {
 	display: block;
 	width: 100%;
-	clear: both;
+	position: absolute;
+	top: 0pt;
+	left: 0pt;
 	height: 48pt;
 }
 
 zine-footer {
 	display: block;
 	width: 100%;
-	clear: both;
+	position: absolute;
+	bottom: 0pt;
+	left: 0pt;
+	text-align: center;
 	height: 24pt;
 }
-
 
 zine-wrapper {
 	display: block;
@@ -40,9 +45,8 @@ zine-wrapper {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-
 	-ms-overflow-style: none;  /* IE and Edge */
-  	scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none;  /* Firefox */
 }::-webkit-scrollbar {
   display: none;
 }
@@ -66,8 +70,8 @@ zine-page {
 zine-page-content {
 	display: block;
 	overflow: hidden;
+	position: relative;
 	background-color: var(--paper-color);
-	aspect-ratio: 7 / 8.5;
 	max-height: calc(100% - 8em);
 	margin-top: 4em;
 	margin-bottom: 4em;
@@ -78,11 +82,9 @@ zine-page-content {
 }
 
 .spread zine-page-content {
-	aspect-ratio: 14 / 8.5;
 	width: 100%;
 	height: auto;
 }
-
 
 @media (orientation: landscape) {
 	.spread zine-page-content {
@@ -102,12 +104,6 @@ zine-page-content {
 	}
 }
 
-
-
-#horizontal-scroll {
-	display: none;
-}
-
 #zine-controls {
 	height: calc(100% - 4em);
  	overflow-y: hidden;
@@ -122,67 +118,53 @@ zine-page-content {
   display: none;
 }
 
-}
-
 @media print {
-
-
-	body {
-		width: 14in;
-		height: 25.5;
-		overflow-y: scroll;
-		overflow-x: hidden;
-		padding: 0;
-		margin: 0;
-	}
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
   
   @page {
- 		width: 14in; 
- 		height: 8.5in;
- 		size: landscape;
+    size: landscape;
     margin: 0;
     padding: 0;
     bleed: 0;
   }
 
   zine-wrapper {
-  	overflow: scroll !important;
-  	display: block;
-  	position: unset;
-  	padding: 0;
-  	margin: 0;
+    overflow: scroll;
+    display: block;
+    position: unset;
+    padding: 0;
+    margin: 0;
   }
 
   zine-page-content {
-		transform:unset !important;
-		transform-origin: unset !important;
-		margin: 0;
-	}
+  	width: 100%;
+  	height: 100%;
+    transform:unset !important;
+    transform-origin: unset !important;
+    margin: 0;
+  }
+
+  zine-page-content.spread {
+    transform:unset;
+    transform-origin: unset;
+  }
 
   zine-controls {
-  	display: none;
+    display: none;
   }
-
-
 
   zine-page {
-  	position: absolute;
-  	left: 0pt;
-  	top: 0pt;
-  	width: 7in;
-  	height:8.5in;
-  	padding: 0;
-  	margin: 0;
-  }
-
-  #horizontal-scroll {
-  	display: none;
+    float: left;
+    padding: 0;
+    margin: 0;
   }
 
   a::after {
-  	content: " (" attr(href) ")";
-	}
+    content: " (" attr(href) ")";
+  }
 }
-
-
-

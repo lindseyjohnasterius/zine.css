@@ -38,7 +38,7 @@ function generateZine(name, template = 'a4', page_count = 12){
       <zine-page 
         src="page-${i+1}.html" 
         id="page-${i+1}" 
-        name="page-${i+1}">
+        name="Page ${i+1}">
       </zine-page>`
     )
     pages.push(`page-${i+1}.html`)
@@ -49,12 +49,6 @@ function generateZine(name, template = 'a4', page_count = 12){
 
   if(template !== 'story-board' && template !== 'report'){
 
-
-    const last_index_page = index_pages.pop()
-    index_pages.splice(0,0,last_index_page)
-
-    const last_page = pages.pop()
-    pages.splice(0,0,last_page)
 
     pages[0] = 'back-cover.html'
     index_pages[0] =  `
@@ -92,6 +86,7 @@ function generateZine(name, template = 'a4', page_count = 12){
     index_pages.splice(middle_page, 2, `
       <zine-page class="spread" src="spread.html" name="Spread" id="spread">
       </zine-page>`)
+
 
   }
 
@@ -141,16 +136,59 @@ function generateZine(name, template = 'a4', page_count = 12){
     createFile('index.html', index_template, name)
 
     pages.forEach((file_name,i) => {
-      createFile(file_name, `
+
+      let file_content =  `
 <!-- ${file_name} -->
 <zine-margin>
+<zine-header>${name}</zine-header>
+<zine-footer><div class="page-number">${i - 1}</div></zine-footer>
+</zine-margin>`
 
-    <zine-header>${name}</zine-header>
-    <zine-footer><div class="page-number">${i}</div></zine-footer>
+      if(i === 0){
+        file_content = `
+<zine-margin>
+  <h2>Back  Cover</h2>
+</zine-margin>`
+      }
+
+      if(i === 1){
+        file_content = `
+<zine-margin>
+  <h1>Front Cover</h1>
+</zine-margin>`
+      }
+
+      if(i === 2){
+        file_content = `
+<zine-margin>
+  <h1>Inside Front Cover</h1>
+</zine-margin>`
+      }
+
+      if(i === pages.length - 1){
+        file_content = `
+<zine-margin>
+  <h1>Back Cover</h1>
+</zine-margin>`
+      } 
+
+      if(i === pages.length - 2){
+        file_content = `
+<zine-margin>
+  <h1>Inside Back Cover</h1>
+</zine-margin>`
+      }
+
+      if(file_name === 'spread.html'){
+        file_content = `
+<zine-margin>
+  <h1>SPREAD</h1>
 
 </zine-margin>
+        `
+      }
 
-      `, name)
+      createFile(file_name,file_content, name)
     })
 
 
