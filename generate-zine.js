@@ -120,8 +120,9 @@ function generateZine(name, template = 'a4', page_count = 12){
   <body>
     <zine-wrapper class="${template}">
       ${index_pages.join('\n')}
-      <zine-controls></zine-controls>
     </zine-wrapper>
+    <zine-controls></zine-controls>
+
     <script>dispatch('GO TO PAGE', '${pages[1]}')</script>
   </body>
 </html>`
