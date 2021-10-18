@@ -169,16 +169,10 @@ function generateZine(name, template = 'a4', page_count = 12){
       if(i === pages.length - 1){
         file_content = `
 <zine-margin>
-  <h1>Back Cover</h1>
+  <h1>Inside Back Cover</h1>
 </zine-margin>`
       } 
 
-      if(i === pages.length - 2){
-        file_content = `
-<zine-margin>
-  <h1>Inside Back Cover</h1>
-</zine-margin>`
-      }
 
       if(file_name === 'spread.html'){
         file_content = `

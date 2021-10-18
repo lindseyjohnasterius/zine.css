@@ -1,0 +1,170 @@
+::root {
+	--paper-color: white;
+	--cover-color: white;
+}
+
+body {
+	font-size: 12pt;
+	-ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}::-webkit-scrollbar {
+  display: none;
+}
+
+zine-margin {
+	display: block;
+	width: calc(100% - 2cm);
+	height: calc(100% - 2cm);
+	margin: 1cm;
+}
+
+zine-header {
+	display: block;
+	width: 100%;
+	position: absolute;
+	top: 0pt;
+	left: 0pt;
+	height: 48pt;
+}
+
+zine-footer {
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0pt;
+	left: 0pt;
+	text-align: center;
+	height: 24pt;
+}
+
+zine-wrapper {
+	display: block;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}::-webkit-scrollbar {
+  display: none;
+}
+
+zine-page {
+	width: 100vw;
+	height: 100vh;
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	overflow: scroll;
+	background-color: grey;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+zine-page-content {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	background-color: var(--paper-color);
+	max-height: calc(100% - 8em);
+	margin-top: 4em;
+	margin-bottom: 4em;
+	margin-left: auto;
+	margin-right: auto;
+	height: auto;
+
+}
+
+.spread zine-page-content {
+	width: 100%;
+	height: auto;
+}
+
+@media (orientation: landscape) {
+	.spread zine-page-content {
+		width: 100vw;
+		height: auto;
+	}
+}
+
+@media (orientation: portrait) {
+	.spread zine-page-content {
+		width: 200vw;
+		position: absolute;
+		left: 0pt;
+		top: 0pt;
+
+		height: auto;
+	}
+}
+
+#zine-controls {
+	height: calc(100% - 4em);
+ 	overflow-y: hidden;
+}
+
+#index-buttons {
+	height: 100%;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}::-webkit-scrollbar {
+  display: none;
+}
+
+@media print {
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  
+  @page {
+    size: landscape;
+    margin: 0;
+    padding: 0;
+    bleed: 0;
+  }
+
+  zine-wrapper {
+    overflow: scroll;
+    display: block;
+    position: unset;
+    padding: 0;
+    margin: 0;
+  }
+
+  zine-page-content {
+  	width: 100%;
+  	height: 100%;
+    transform:unset !important;
+    transform-origin: unset !important;
+    margin: 0;
+  }
+
+  zine-page-content.spread {
+    transform:unset;
+    transform-origin: unset;
+  }
+
+  zine-controls {
+    display: none;
+  }
+
+  zine-page {
+    float: left;
+    padding: 0;
+    margin: 0;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+  }
+}
