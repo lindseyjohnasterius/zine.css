@@ -72,13 +72,9 @@ class ZineControls extends HTMLElement {
 customElements.define('zine-controls', ZineControls)
 
 
-
-
-
 class ZinePageContent extends HTMLElement {
 
 }
-
 customElements.define('zine-page-content', ZinePageContent)
 
 
@@ -119,15 +115,9 @@ class ZineSpreadPage extends HTMLElement {
 customElements.define('zine-spread-page', ZineSpreadPage)
 
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
-
-dispatch('GO TO PAGE', 'front-cover')
-
-   // your code here
+  dispatch('GO TO PAGE', 'front-cover')
 }, false);
-
 
 
 
